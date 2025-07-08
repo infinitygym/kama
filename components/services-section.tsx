@@ -72,7 +72,7 @@ export default function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-12 sm:py-16 relative" style={{ backgroundColor: "#334475" }}>
+    <section id="services" className="py-12 sm:py-16 relative overflow-x-hidden" style={{ backgroundColor: "#334475" }}>
       <div className="container mx-auto px-4">
         <div className="absolute top-6 sm:top-8 left-6 sm:left-8">
           <Image
@@ -97,17 +97,22 @@ export default function ServicesSection() {
             const ref = useRef<HTMLDivElement>(null)
             const inView = useInView(ref)
             const controls = useAnimation()
-
-            useEffect(() => {
-              if (inView) {
-                controls.start({
-                  x: 0,
-                  opacity: 1,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.7, ease: "easeOut" },
-                })
-              }
-            }, [inView, controls])
+useEffect(() => {
+  if (inView) {
+    controls.start({
+      x: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      transition: { duration: 0.7, ease: "easeOut" },
+    })
+  } else {
+    controls.set({
+      x: initialX,
+      opacity: 0,
+      filter: "blur(10px)",
+    })
+  }
+}, [inView, controls])
 
             // Start hidden state
             const initialX = index % 2 === 1 ? 100 : -100
@@ -116,7 +121,7 @@ export default function ServicesSection() {
               <motion.div
                 key={index}
                 ref={ref}
-                initial={{ x: initialX, opacity: 0, filter: "blur(10px)" }}
+                initial={false}
                 animate={controls}
                 className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
                   index % 2 === 1 ? "lg:grid-flow-col-dense" : ""

@@ -7,25 +7,25 @@ export default function MenuSection() {
       title: "Private Cooking Experiences",
       description:
         "Intimate culinary journeys in the comfort of your own space. Experience authentic Cretan flavors through personalized cooking sessions that honor tradition while embracing your unique tastes.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/1.jpeg?height=300&width=400",
     },
     {
       title: "Traditional Cooking Lessons",
       description:
         "Hands-on traditional cooking lessons with a modern twist. Learn age-old techniques passed down through generations, reimagined for today's kitchen and lifestyle.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/2.jpeg?height=300&width=400",
     },
     {
       title: "Food Pairing Journeys",
       description:
         "Discover the art of pairing using locally sourced and seasonal ingredients. Explore how flavors dance together, creating harmonious experiences that celebrate Crete's abundant harvest.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/3.jpeg?height=300&width=400",
     },
     {
       title: "Online Courses",
       description:
         "Bring the soul of Crete into your own kitchen from anywhere in the world. Our online courses guide you through traditional recipes, techniques, and the stories that make each dish meaningful.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/4.jpeg?height=300&width=400",
     },
   ]
 
@@ -33,9 +33,9 @@ export default function MenuSection() {
     <section id="menu" className="py-12 sm:py-16 relative" style={{ backgroundColor: "#0B6E3C" }}>
       <div className="absolute inset-0 z-10 backdrop-blur-sm bg-white/10 pointer-events-none"></div>  {/* Blur overlay remove this single line*/}
       <div className="absolute inset-y-0 left-0 right-0 z-20 flex items-center justify-center px-6 sm:px-12" style={{ backgroundColor: "rgba(11, 110, 60, 0.8)" }}>
-  <div className="text-center">
+  <div className="text-center font-sans">
     <p className="text-5xl sm:text-6xl font-bold text-white leading-tight">
-      Coming soon ...
+      Coming Soon
     </p>
     <p className="text-2xl sm:text-3xl font-medium text-white mt-4">
       Contact us to create your desired menu

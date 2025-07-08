@@ -17,10 +17,48 @@ export default function ContactForm() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
+   const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault()
+
+  const formDataToSend = new FormData()
+  formDataToSend.append("firstName", formData.firstName)
+  formDataToSend.append("lastName", formData.lastName)
+  formDataToSend.append("email", formData.email)
+  formDataToSend.append("phone", formData.phone)
+  formDataToSend.append("service", formData.service)
+  formDataToSend.append("message", formData.message)
+
+  // FormSubmit hidden fields
+  formDataToSend.append("_subject", "New message from your website!")
+  formDataToSend.append("_captcha", "false")
+  formDataToSend.append("_template", "table")
+  formDataToSend.append("_next", "http://www.infinitygym.gr/thank-you")
+
+  try {
+    const response = await fetch("https://formsubmit.co/infinityheraklion@gmail.com", {
+      method: "POST",
+      body: formDataToSend,
+    })
+
+    if (response.ok) {
+      // Optionally reset the form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      })
+      // Redirect manually if needed
+      window.location.href = "http://www.infinitygym.gr/thank-you"
+    } else {
+      console.error("Form submission failed.")
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error)
   }
+}
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -81,18 +119,6 @@ export default function ContactForm() {
                   <SelectValue placeholder="Service Interest" className="text-gray-400" />
                 </SelectTrigger>
                 <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="private-cooking-experiences" className="text-white hover:bg-gray-700">
-                    Private Cooking Experiences
-                  </SelectItem>
-                  <SelectItem value="traditional-cooking-lessons" className="text-white hover:bg-gray-700">
-                    Traditional Cooking Lessons
-                  </SelectItem>
-                  <SelectItem value="food-pairing-journeys" className="text-white hover:bg-gray-700">
-                    Food Pairing Journeys
-                  </SelectItem>
-                  <SelectItem value="online-courses" className="text-white hover:bg-gray-700">
-                    Online Courses
-                  </SelectItem>
                   <SelectItem value="private-chef-services" className="text-white hover:bg-gray-700">
                     Private Chef Services
                   </SelectItem>
