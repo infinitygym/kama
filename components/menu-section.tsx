@@ -63,6 +63,7 @@ export default function MenuSection() {
           </div>
         </div>
 
+
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {menuCategories.map((category, index) => (
             <Card
