@@ -1,11 +1,17 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import type React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -15,67 +21,95 @@ export default function ContactForm() {
     phone: "",
     service: "",
     message: "",
-  })
+  });
 
-   const handleSubmit = async (e: React.FormEvent) => {
-     e.preventDefault()
+  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">(
+    "idle"
+  );
 
-  const formDataToSend = new FormData()
-  formDataToSend.append("firstName", formData.firstName)
-  formDataToSend.append("lastName", formData.lastName)
-  formDataToSend.append("email", formData.email)
-  formDataToSend.append("phone", formData.phone)
-  formDataToSend.append("service", formData.service)
-  formDataToSend.append("message", formData.message)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  // FormSubmit hidden fields
-  formDataToSend.append("_subject", "New message from your website!")
-  formDataToSend.append("_captcha", "false")
-  formDataToSend.append("_template", "table")
-  formDataToSend.append("_next", "http://www.infinitygym.gr/thank-you")
+    const formDataToSend = new FormData();
+    formDataToSend.append("firstName", formData.firstName);
+    formDataToSend.append("lastName", formData.lastName);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("service", formData.service);
+    formDataToSend.append("message", formData.message);
 
-  try {
-    const response = await fetch("https://formsubmit.co/infinityheraklion@gmail.com", {
-      method: "POST",
-      body: formDataToSend,
-    })
+    // FormSubmit hidden fields
+    formDataToSend.append("_subject", "New message from your website!");
+    formDataToSend.append("_captcha", "false");
+    formDataToSend.append("_template", "table");
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/infinityheraklion@gmail.com",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
 
-    if (response.ok) {
-      // Optionally reset the form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: "",
-      })
-      // Redirect manually if needed
-      //window.location.href = "http://www.infinitygym.gr/thank-you"
-    } else {
-      console.error("Form submission failed.")
+      if (response.ok) {
+        // Optionally reset the form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+        setFormStatus("success");
+        setTimeout(() => setFormStatus("idle"), 5000);
+      } else {
+        setFormStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setFormStatus("error");
     }
-  } catch (error) {
-    console.error("Error submitting form:", error)
-  }
-}
+  };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
-    <section id="contact" className="py-12 sm:py-16" style={{ backgroundColor: "#2c2c2c" }}>
+    <section
+      id="contact"
+      className="py-12 sm:py-16"
+      style={{ backgroundColor: "#2c2c2c" }}
+    >
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Get In Touch</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Get In Touch
+            </h2>
             <p className="text-base sm:text-lg text-gray-300 px-4">
-              Ready to embark on your culinary journey? Send us a message and let's create something beautiful together.
+              Ready to embark on your culinary journey? Send us a message and
+              let's create something beautiful together.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 px-4 sm:px-0">
+          {/* ✅ Success/Error Message */}
+          {formStatus === "success" && (
+            <div className="mb-6 text-green-400 border border-green-600 bg-green-900/20 p-4 rounded-md text-center">
+              ✅ Your message has been sent successfully!
+            </div>
+          )}
+          {formStatus === "error" && (
+            <div className="mb-6 text-red-400 border border-red-600 bg-red-900/20 p-4 rounded-md text-center">
+              ❌ Something went wrong. Please try again later.
+            </div>
+          )}
+
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 sm:space-y-8 px-4 sm:px-0"
+          >
             {/* First Name and Last Name */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <Input
@@ -114,27 +148,51 @@ export default function ContactForm() {
               />
             </div>
             <div>
-              <Select onValueChange={(value) => handleInputChange("service", value)}>
+              <Select
+                value={formData.service}
+                onValueChange={(value) => handleInputChange("service", value)}
+              >
                 <SelectTrigger className="bg-transparent border-0 border-b-2 border-gray-500 rounded-none text-white focus:border-red-500 focus:ring-0 pb-2 text-base">
-                  <SelectValue placeholder="Service Interest" className="text-gray-400" />
+                  <SelectValue
+                    placeholder="Service Interest"
+                    className="text-gray-400"
+                  />
                 </SelectTrigger>
                 <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="private-chef-services" className="text-white hover:bg-gray-700">
+                  <SelectItem
+                    value="private-chef-services"
+                    className="text-white hover:bg-gray-700"
+                  >
                     Private Chef Services
                   </SelectItem>
-                  <SelectItem value="small-event-catering" className="text-white hover:bg-gray-700">
+                  <SelectItem
+                    value="small-event-catering"
+                    className="text-white hover:bg-gray-700"
+                  >
                     Small Event Catering
                   </SelectItem>
-                  <SelectItem value="cooking-lessons" className="text-white hover:bg-gray-700">
+                  <SelectItem
+                    value="cooking-lessons"
+                    className="text-white hover:bg-gray-700"
+                  >
                     Cooking Lessons
                   </SelectItem>
-                  <SelectItem value="online-lessons" className="text-white hover:bg-gray-700">
+                  <SelectItem
+                    value="online-lessons"
+                    className="text-white hover:bg-gray-700"
+                  >
                     Online Lessons
                   </SelectItem>
-                  <SelectItem value="menu-planning" className="text-white hover:bg-gray-700">
+                  <SelectItem
+                    value="menu-planning"
+                    className="text-white hover:bg-gray-700"
+                  >
                     Menu Planning
                   </SelectItem>
-                  <SelectItem value="special-occasions" className="text-white hover:bg-gray-700">
+                  <SelectItem
+                    value="special-occasions"
+                    className="text-white hover:bg-gray-700"
+                  >
                     Special Occasions
                   </SelectItem>
                 </SelectContent>
@@ -161,5 +219,5 @@ export default function ContactForm() {
         </div>
       </div>
     </section>
-  )
+  );
 }
