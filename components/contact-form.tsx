@@ -51,7 +51,7 @@ export default function ContactForm() {
         message: "",
       })
       // Redirect manually if needed
-      window.location.href = "http://www.infinitygym.gr/thank-you"
+      //window.location.href = "http://www.infinitygym.gr/thank-you"
     } else {
       console.error("Form submission failed.")
     }

@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       'Experience authentic Cretan and Mediterranean cuisine with KAMA Pure Culinary Lab. Private chef services, catering, cooking lessons, and more.',
     url: 'https://kama.cooking',
     siteName: 'KAMA Pure Culinary Lab',
-    locale: 'en',
+    locale: 'en-US',
     type: 'website',
     images: [
       {
@@ -72,6 +72,7 @@ export const metadata: Metadata = {
       'en-US': 'https://kama.cooking',
     },
   },
+  category: 'food',
 }
 
 export default function RootLayout({
