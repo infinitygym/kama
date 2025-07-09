@@ -26,6 +26,7 @@ export default function ContactForm() {
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">(
     "idle"
   );
+  const [fadingOut, setFadingOut] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,9 +63,22 @@ export default function ContactForm() {
           message: "",
         });
         setFormStatus("success");
-        setTimeout(() => setFormStatus("idle"), 5000);
+        setTimeout(() => {
+          setFadingOut(true);
+          setTimeout(() => {
+            setFormStatus("idle");
+            setFadingOut(false);
+          }, 1000); // Matches duration-1000 in Tailwind
+        }, 3000);
       } else {
         setFormStatus("error");
+        setTimeout(() => {
+          setFadingOut(true);
+          setTimeout(() => {
+            setFormStatus("idle");
+            setFadingOut(false);
+          }, 1000);
+        }, 3000);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -94,15 +108,17 @@ export default function ContactForm() {
             </p>
           </div>
 
-          {/* ✅ Success/Error Message */}
-          {formStatus === "success" && (
-            <div className="mb-6 text-green-400 border border-green-600 bg-green-900/20 p-4 rounded-md text-center">
-              ✅ Your message has been sent successfully!
-            </div>
-          )}
-          {formStatus === "error" && (
-            <div className="mb-6 text-red-400 border border-red-600 bg-red-900/20 p-4 rounded-md text-center">
-              ❌ Something went wrong. Please try again later.
+          {formStatus !== "idle" && (
+            <div
+              className={`mb-6 text-center p-4 rounded-md transition-opacity duration-1000 ${
+                formStatus === "success"
+                  ? "text-green-400 border border-green-600 bg-green-900/20"
+                  : "text-red-400 border border-red-600 bg-red-900/20"
+              } ${fadingOut ? "opacity-0" : "opacity-100"}`}
+            >
+              {formStatus === "success"
+                ? "✅ Your message has been sent successfully!"
+                : "❌ Something went wrong. Please try again later."}
             </div>
           )}
 
