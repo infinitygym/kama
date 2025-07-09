@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://kama.cooking/og-image.png',
+        url: 'https://kama.cooking/kama-about-image.png',
         width: 1200,
         height: 630,
         alt: 'KAMA Pure Culinary Lab',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: 'KAMA Pure Culinary Lab',
     description:
       'Experience authentic Cretan and Mediterranean cuisine with KAMA Pure Culinary Lab. Private chef services, catering, cooking lessons, and more.',
-    images: ['https://kama.cooking/og-image.png'],
+    images: ['https://kama.cooking/kama-about-image.png'],
   },
   icons: {
   icon: [
