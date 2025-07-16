@@ -45,7 +45,7 @@ export default function ContactForm() {
     formDataToSend.append("_template", "table");
     try {
       const response = await fetch(
-        "https://formsubmit.co/info@kama.cooking",
+        "https://formsubmit.co/info@infinityheraklion@gmail.com",
         {
           method: "POST",
           body: formDataToSend,
