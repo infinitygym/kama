@@ -44,6 +44,58 @@ export default function AboutSection() {
     <section id="about" className="py-8 sm:py-12 bg-black relative">
       <div className="container mx-auto px-4">
         {/* Top Section omitted for brevity */}
+<div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center mb-10 sm:mb-16">
+          <div className="space-y-4 lg:space-y-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">
+              Welcome to KAMA Pure Culinary Lab
+            </h2>
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">
+              <strong>Nestled in the soul of Crete</strong>, KAMA was not created to impress, but to{" "}
+              <strong>awaken</strong>. To awaken memories, senses, and emotions that too often lie dormant in a fast-moving world. 
+              In a time when food is mass-produced and experiences feel curated, we invite you to return—to <strong>authenticity</strong>.
+            </p>
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">
+              <strong>KAMA is more than a kitchen.</strong> It is a <strong>sanctuary</strong> where cooking becomes therapy, and meals become stories.
+            </p>
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              We believe that food is <strong>personal</strong>. That cooking for yourself is a form of <strong>self-love</strong>. 
+              That sharing a meal is the <strong>oldest and most sacred act of connection</strong>.
+            </p>
+          </div>
+
+          <div className="flex flex-col space-y-6 w-full">
+            <div className="relative w-full h-[200px] sm:h-[250px]">
+              <Image
+                src="/kama-about-image.jpg"
+                alt="KAMA Pure Culinary Lab Logo"
+                fill
+                className="object-contain rounded-lg shadow-xl"
+              />
+            </div>
+
+            <div className="space-y-4 w-full">
+              <h3 className="text-lg sm:text-xl font-semibold text-white text-center">Our offerings include:</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base text-gray-300">
+                <div className="flex items-start space-x-2">
+                  <span className="text-red-500 mt-1">•</span>
+                  <span>Private cooking experiences</span>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <span className="text-red-500 mt-1">•</span>
+                  <span>Hands-on traditional cooking lessons with a modern twist</span>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <span className="text-red-500 mt-1">•</span>
+                  <span>Food pairing journeys using locally sourced and seasonal ingredients</span>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <span className="text-red-500 mt-1">•</span>
+                  <span>Online courses for those who wish to bring the soul of Crete into their own kitchen</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Bottom Section */}
         <div className="max-w-full mx-auto text-center space-y-6 sm:space-y-8">
