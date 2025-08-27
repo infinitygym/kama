@@ -41,7 +41,10 @@ export default function AboutSection() {
       });
     };
   }, []);
-  
+
+  // Tailwind delay classes (can be adjusted)
+  const delays = ["delay-150", "delay-300", "delay-450"];
+
   return (
     <section id="about" className="py-8 sm:py-12 bg-black relative">
       <div className="container mx-auto px-4">
@@ -128,7 +131,8 @@ export default function AboutSection() {
                     key={i}
                     ref={refs[i]}
                     className={`text-base sm:text-lg transform transition-all duration-700 ease-out
-                      ${visible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+                      ${visible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} 
+                      ${visible[i] ? delays[i] : ""}`}
                   >
                     {text}
                   </span>
