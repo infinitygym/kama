@@ -128,14 +128,14 @@ export default function AboutSection() {
               <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
                 {spanTexts.map((text, i) => (
                   <span
-                    key={i}
-                    ref={refs[i]}
-                    className={`text-base sm:text-lg transform transition-all duration-700 ease-out
-                      ${visible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} 
-                      ${visible[i] ? delays[i] : ""}`}
-                  >
-                    {text}
-                  </span>
+  key={i}
+  ref={refs[i]}
+  className={`text-base sm:text-lg transform transition-opacity transition-transform duration-700 ease-out
+    ${visible[i] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} 
+    ${delays[i]}`}
+>
+  {text}
+</span>
                 ))}
               </div>
             </div>
