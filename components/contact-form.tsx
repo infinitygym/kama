@@ -23,7 +23,7 @@ export default function ContactForm() {
     message: "",
   });
 
-  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">(
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">(
     "idle"
   );
   const [fadingOut, setFadingOut] = useState(false);
@@ -31,6 +31,9 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+     // show instant feedback
+    setFormStatus("sending");
+    
     const formDataToSend = new FormData();
     formDataToSend.append("firstName", formData.firstName);
     formDataToSend.append("lastName", formData.lastName);
@@ -113,12 +116,16 @@ export default function ContactForm() {
               className={`mb-6 text-center p-4 rounded-md transition-opacity duration-1000 ${
                 formStatus === "success"
                   ? "text-green-400 border border-green-600 bg-green-900/20"
-                  : "text-red-400 border border-red-600 bg-red-900/20"
+                  : formStatus === "sending"
+                  ? "text-yellow-400 border border-yellow-600 bg-yellow-900/20"
+                  :"text-red-400 border border-red-600 bg-red-900/20"
               } ${fadingOut ? "opacity-0" : "opacity-100"}`}
             >
-              {formStatus === "success"
-                ? "✅ Your message has been sent successfully!"
-                : "❌ Something went wrong. Please try again later."}
+              {formStatus === "success" &&
+                "✅ Your message has been sent successfully!"}
+              {formStatus === "error" &&
+                "❌ Something went wrong. Please try again later."}
+              {formStatus === "sending" && "⏳ Sending your message..."}
             </div>
           )}
 
