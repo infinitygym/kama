@@ -9,6 +9,9 @@ export default function AboutSection() {
   ];
   const [visible, setVisible] = useState([false, false, false]);
 
+  // Tailwind delay classes (can be adjusted)
+  const delays = ["delay-150", "delay-300", "delay-450"];
+  
   const refs = [
     useRef<HTMLSpanElement>(null),
     useRef<HTMLSpanElement>(null),
@@ -41,10 +44,7 @@ export default function AboutSection() {
       });
     };
   }, []);
-
-  // Tailwind delay classes (can be adjusted)
-  const delays = ["delay-150", "delay-300", "delay-450"];
-
+  
   return (
     <section id="about" className="py-8 sm:py-12 bg-black relative">
       <div className="container mx-auto px-4">
