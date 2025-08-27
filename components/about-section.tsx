@@ -120,6 +120,21 @@ export default function AboutSection() {
               ))}
             </div>
           </div>
+
+          <div className="border-t border-gray-600 pt-6 sm:pt-8 space-y-4 sm:space-y-6 px-4">
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              We are currently preparing our space to welcome you soon.<br />
+              Until then, follow our journey and stay connected.
+            </p>
+
+            <p className="text-xl sm:text-2xl font-bold text-white">
+              KAMA invites you to remember who you are.<br />
+              <span className="text-base sm:text-lg font-normal text-gray-300">
+                One dish, one story, one moment at a time.
+              </span>
+            </p>
+          </div>
+          
         </div>
       </div>
     </section>
