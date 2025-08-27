@@ -105,7 +105,7 @@ export default function AboutSection() {
           </p>
 
           <div className="text-lg sm:text-xl font-medium text-white mt-8 sm:mt-12 px-4">
-            <p>Because cooking, here, isn't just a skill—it's a return.</p>
+            <p>Because cooking, here, isn't just a skill, it's a return.</p>
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0">
               {spanTexts.map((text, i) => (
                 <span
